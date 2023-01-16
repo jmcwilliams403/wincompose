@@ -50,13 +50,13 @@ public partial class Key
         { new Key(VK.RETURN),  "⏎" },
     };
 
-        /// <summary>
-        /// A dictionary of non-printable keysyms and the corresponding virtual
-        /// key (VK) value.
-        /// </summary>
-        private static readonly Dictionary<string, VK> m_extra_keysyms
-            = new Dictionary<string, VK>
-        {
+    /// <summary>
+    /// A dictionary of non-printable keysyms and the corresponding virtual
+    /// key (VK) value.
+    /// </summary>
+    private static readonly Dictionary<string, VK> m_extra_keysyms
+        = new Dictionary<string, VK>
+    {
         { "Multi_key", VK.COMPOSE },
         { "Up",        VK.UP },
         { "Down",      VK.DOWN },
@@ -86,7 +86,7 @@ public partial class Key
         { "Super_L",   VK.LWIN },
         { "Super_R",   VK.RWIN },
 #endif
-        };
+    };
 
     /// <summary>
     /// A dictionary of printable keysyms and the corresponding string. This list

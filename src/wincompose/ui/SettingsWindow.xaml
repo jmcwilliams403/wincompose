@@ -242,12 +242,6 @@
                                 ToolTipService.ToolTip="{x:Static i18n:Text.AlwaysComposeToolTip}">
                             <TextBlock Text="{x:Static i18n:Text.AlwaysCompose}" TextWrapping="Wrap"/>
                         </CheckBox>
-
-                        <CheckBox Grid.Row="6" Grid.ColumnSpan="3" Margin="8,4" VerticalAlignment="Center"
-                                IsChecked="{Binding Value, Source={x:Static wc:Settings.UnicodeInput}}"
-                                ToolTipService.ToolTip="{x:Static i18n:Text.UnicodeInputToolTip}">
-                            <TextBlock Text="{x:Static i18n:Text.UnicodeInput}" TextWrapping="Wrap"/>
-                        </CheckBox>
                     </Grid>
                 </GroupBox>
 
@@ -275,6 +269,12 @@
                                 IsChecked="{Binding Value, Source={x:Static wc:Settings.UseEmojiRules}}"
                                 ToolTipService.ToolTip="{x:Static i18n:Text.UseEmojiRulesToolTip}">
                             <TextBlock Text="{x:Static i18n:Text.UseEmojiRules}" TextWrapping="Wrap"/>
+                        </CheckBox>
+                        
+                        <CheckBox Grid.Row="6" Grid.ColumnSpan="2" Margin="8,4" VerticalAlignment="Center"
+                                IsChecked="{Binding Value, Source={x:Static wc:Settings.UnicodeInput}}"
+                                ToolTipService.ToolTip="{x:Static i18n:Text.UnicodeInputToolTip}">
+                            <TextBlock Text="{x:Static i18n:Text.UnicodeInput}" TextWrapping="Wrap"/>
                         </CheckBox>
                     </StackPanel>
                 </GroupBox>

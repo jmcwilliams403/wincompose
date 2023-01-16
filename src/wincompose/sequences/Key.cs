@@ -35,10 +35,10 @@ public partial class Key
         = new Dictionary<Key, string>
     {
         { new Key(VK.COMPOSE), "♦" },
-        { new Key(VK.UP),      "▲" },
-        { new Key(VK.DOWN),    "▼" },
-        { new Key(VK.LEFT),    "◀" },
-        { new Key(VK.RIGHT),   "▶" },
+        { new Key(VK.UP),      "⬆" },
+        { new Key(VK.DOWN),    "⬇" },
+        { new Key(VK.LEFT),    "⬅" },
+        { new Key(VK.RIGHT),   "⮕" },
         { new Key(VK.HOME),    "Home" },
         { new Key(VK.END),     "End" },
         { new Key(VK.PRIOR),   "PgUp" },

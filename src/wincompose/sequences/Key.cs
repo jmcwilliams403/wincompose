@@ -41,18 +41,22 @@ public partial class Key
         { new Key(VK.RIGHT),   "▶" },
         { new Key(VK.HOME),    "Home" },
         { new Key(VK.END),     "End" },
+        { new Key(VK.PRIOR),   "PgUp" },
+        { new Key(VK.NEXT),    "PgDn" },
         { new Key(VK.BACK),    "⌫" },
-        { new Key(VK.DELETE),  "␡" },
-        { new Key(VK.TAB),     "↹" },
+        { new Key(VK.DELETE),  "⌦" },
+        { new Key(VK.INSERT),  "Ins" },
+        { new Key(VK.TAB),     "⭾" },
+        { new Key(VK.RETURN),  "⏎" },
     };
 
-    /// <summary>
-    /// A dictionary of non-printable keysyms and the corresponding virtual
-    /// key (VK) value.
-    /// </summary>
-    private static readonly Dictionary<string, VK> m_extra_keysyms
-        = new Dictionary<string, VK>
-    {
+        /// <summary>
+        /// A dictionary of non-printable keysyms and the corresponding virtual
+        /// key (VK) value.
+        /// </summary>
+        private static readonly Dictionary<string, VK> m_extra_keysyms
+            = new Dictionary<string, VK>
+        {
         { "Multi_key", VK.COMPOSE },
         { "Up",        VK.UP },
         { "Down",      VK.DOWN },
@@ -60,8 +64,13 @@ public partial class Key
         { "Right",     VK.RIGHT },
         { "Home",      VK.HOME },
         { "End",       VK.END },
+        { "Prior",     VK.PRIOR },
+        { "Page_Up",   VK.PRIOR },
+        { "Next",      VK.NEXT },
+        { "Page_Down", VK.NEXT },
         { "BackSpace", VK.BACK },
         { "Delete",    VK.DELETE },
+        { "Insert",    VK.INSERT },
         { "Tab",       VK.TAB },
         { "Return",    VK.RETURN },
 #if false
@@ -77,7 +86,7 @@ public partial class Key
         { "Super_L",   VK.LWIN },
         { "Super_R",   VK.RWIN },
 #endif
-    };
+        };
 
     /// <summary>
     /// A dictionary of printable keysyms and the corresponding string. This list

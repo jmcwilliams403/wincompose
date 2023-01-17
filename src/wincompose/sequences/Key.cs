@@ -35,19 +35,19 @@ public partial class Key
         = new Dictionary<Key, string>
     {
         { new Key(VK.COMPOSE), "♦" },
-        { new Key(VK.UP),      "⬆" },
-        { new Key(VK.DOWN),    "⬇" },
-        { new Key(VK.LEFT),    "⬅" },
-        { new Key(VK.RIGHT),   "⮕" },
-        { new Key(VK.HOME),    "Home" },
-        { new Key(VK.END),     "End" },
-        { new Key(VK.PRIOR),   "PgUp" },
-        { new Key(VK.NEXT),    "PgDn" },
         { new Key(VK.BACK),    "⌫" },
-        { new Key(VK.DELETE),  "⌦" },
-        { new Key(VK.INSERT),  "Ins" },
         { new Key(VK.TAB),     "⭾" },
         { new Key(VK.RETURN),  "⏎" },
+        { new Key(VK.PRIOR),   "PgUp" },
+        { new Key(VK.NEXT),    "PgDn" },
+        { new Key(VK.END),     "End" },
+        { new Key(VK.HOME),    "Home" },
+        { new Key(VK.LEFT),    "⬅" },
+        { new Key(VK.UP),      "⬆" },
+        { new Key(VK.RIGHT),   "⮕" },
+        { new Key(VK.DOWN),    "⬇" },
+        { new Key(VK.INSERT),  "Ins" },
+        { new Key(VK.DELETE),  "⌦" },
     };
 
     /// <summary>
@@ -58,21 +58,21 @@ public partial class Key
         = new Dictionary<string, VK>
     {
         { "Multi_key", VK.COMPOSE },
-        { "Up",        VK.UP },
-        { "Down",      VK.DOWN },
-        { "Left",      VK.LEFT },
-        { "Right",     VK.RIGHT },
-        { "Home",      VK.HOME },
-        { "End",       VK.END },
+        { "BackSpace", VK.BACK },
+        { "Tab",       VK.TAB },
+        { "Return",    VK.RETURN },
         { "Prior",     VK.PRIOR },
         { "Page_Up",   VK.PRIOR },
         { "Next",      VK.NEXT },
         { "Page_Down", VK.NEXT },
-        { "BackSpace", VK.BACK },
-        { "Delete",    VK.DELETE },
+        { "End",       VK.END },
+        { "Home",      VK.HOME },
+        { "Left",      VK.LEFT },
+        { "Up",        VK.UP },
+        { "Right",     VK.RIGHT },
+        { "Down",      VK.DOWN },
         { "Insert",    VK.INSERT },
-        { "Tab",       VK.TAB },
-        { "Return",    VK.RETURN },
+        { "Delete",    VK.DELETE },
 #if false
         // These cannot be activated yet because the composer cannot handle
         // modifier keys as both possible sequence elements and forwardable

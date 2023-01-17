@@ -102,7 +102,7 @@ public partial class Key
         Dictionary<string, string> ret = new Dictionary<string, string>();
         using (var reader = new GZipResourceStream("keysymdef.h.gz"))
         {
-            Regex r = new Regex(@"^#define XK_([^ ]*).* U\+([A-Za-z0-9]+)");
+            Regex r = new Regex(@"^#define XK_([a-zA-Z_0-9]+)\s.*?U\+([0-9A-F]{4,6})");
             for (string l = reader.ReadLine(); l != null; l = reader.ReadLine())
             {
                 Match m = r.Match(l);

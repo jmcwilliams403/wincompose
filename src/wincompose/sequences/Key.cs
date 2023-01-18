@@ -36,6 +36,7 @@ namespace WinCompose
             { new Key(VK.COMPOSE), "♦" },
             { new Key(VK.BACK),    "⌫" },
             { new Key(VK.TAB),     "⭾" },
+            { new Key("\n"),       "Line\nFeed" },
             { new Key(VK.CLEAR),   "⌧" },
             { new Key(VK.RETURN),  "⏎" },
             { new Key(" "),        "SP" },
@@ -101,7 +102,16 @@ namespace WinCompose
 
         private static Dictionary<string, string> ReadXorgKeySyms()
         {
-            Dictionary<string, string> ret = new Dictionary<string, string>();
+            Dictionary<string, string> ret = new Dictionary<string, string>
+            {
+                { "Linefeed", "\n" },
+                { "ch",       "ch" },
+                { "Ch",       "Ch" },
+                { "CH",       "CH" },
+                { "c_h",      "c’h" },
+                { "C_h",      "C’h" },
+                { "C_H",      "C’H" },
+            };
             using (var reader = new GZipResourceStream("keysymdef.h.gz"))
             {
                 Regex r = new Regex(@"^#define XK_([a-zA-Z_0-9]+)\s.*?U\+([0-9A-F]{4,6})");

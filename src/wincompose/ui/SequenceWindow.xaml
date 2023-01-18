@@ -132,12 +132,6 @@
                                     </Viewbox>
                                 </Border>
                             </Border>
-                            <DataTemplate.Triggers>
-                                <!-- Change the key size when the value matches the space key -->
-                                <DataTrigger Binding="{Binding}" Value="{x:Static wc:SequenceViewModel.SpaceKey}">
-                                    <Setter TargetName="KeyBorder" Property="Width" Value="60"/>
-                                </DataTrigger>
-                            </DataTemplate.Triggers>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

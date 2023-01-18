@@ -20,7 +20,6 @@ using System.Diagnostics;
 
 namespace WinCompose
 {
-
     static class Program
     {
         static Dictionary<string, MenuCommand> m_command_flags = new Dictionary<string, MenuCommand>()

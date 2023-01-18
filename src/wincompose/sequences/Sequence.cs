@@ -139,29 +139,27 @@ public class KeySequence : List<Key>
         => this.Aggregate(0x2d2816fe, (hash, x) => hash * 31 + x.GetHashCode());
 };
 
-//
-// This data structure is used for communication with the GUI
-//
-
-public class SequenceDescription : IComparable<SequenceDescription>
-{
-    public KeySequence Sequence = new KeySequence();
-    public string Description = "";
-    public string Result = "";
-    public int Utf32 = -1;
-
-    /// <summary>
-    /// Sequence comparison routine. Use to sort sequences alphabetically or
-    /// numerically in the GUI.
-    /// </summary>
-    public int CompareTo(SequenceDescription other)
+    //
+    // This data structure is used for communication with the GUI
+    //
+    public class SequenceDescription : IComparable<SequenceDescription>
     {
-        // If either sequence results in a single character, compare actual
-        // Unicode codepoints. Otherwise, compare sequences alphabetically.
-        if (Utf32 != -1 || other.Utf32 != -1)
-            return Utf32.CompareTo(other.Utf32);
-        return Result.CompareTo(other.Result);
-    }
-};
+        public KeySequence Sequence = new KeySequence();
+        public string Description = "";
+        public string Result = "";
+        public int Utf32 = -1;
 
+        /// <summary>
+        /// Sequence comparison routine. Use to sort sequences alphabetically or
+        /// numerically in the GUI.
+        /// </summary>
+        public int CompareTo(SequenceDescription other)
+        {
+            // If either sequence results in a single character, compare actual
+            // Unicode codepoints. Otherwise, compare sequences alphabetically.
+            if (Utf32 != -1 || other.Utf32 != -1)
+                return Utf32.CompareTo(other.Utf32);
+            return Result.CompareTo(other.Result);
+        }
+    };
 }

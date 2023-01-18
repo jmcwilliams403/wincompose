@@ -38,6 +38,7 @@ namespace WinCompose
             { new Key(VK.TAB),     "⭾" },
             { new Key(VK.CLEAR),   "⌧" },
             { new Key(VK.RETURN),  "⏎" },
+            { new Key(" "),        "SP" },
             { new Key(VK.PRIOR),   "PgUp" },
             { new Key(VK.NEXT),    "PgDn" },
             { new Key(VK.END),     "End" },
@@ -48,6 +49,8 @@ namespace WinCompose
             { new Key(VK.DOWN),    "⬇" },
             { new Key(VK.INSERT),  "Ins" },
             { new Key(VK.DELETE),  "⌦" },
+            { new Key("\xa0"),     "NBSP" },
+            { new Key("\xad"),     "SHY" },
         };
 
         /// <summary>

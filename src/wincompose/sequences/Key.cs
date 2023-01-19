@@ -26,7 +26,7 @@ namespace WinCompose
     /// </summary>
     public partial class Key
     {
-        public static readonly string ComposeKeyLabel = "Com-\npose";
+        public static readonly Key COMPOSE = new Key(VK.COMPOSE);
         /// <summary>
         /// A dictionary of symbols that we use for some key labels when
         /// ToString() won’t do a good job.
@@ -34,7 +34,7 @@ namespace WinCompose
         private static readonly Dictionary<Key, string> m_key_labels
             = new Dictionary<Key, string>
         {
-            { new Key(VK.COMPOSE), ComposeKeyLabel },
+            { COMPOSE,             "Com-\npose" },
             { new Key(VK.BACK),    "⌫" },
             { new Key(VK.TAB),     "⭾" },
             { new Key("\n"),       "Line\nFeed" },

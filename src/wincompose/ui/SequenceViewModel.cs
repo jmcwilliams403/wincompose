@@ -45,7 +45,7 @@ namespace WinCompose
         public string RichDescription => (IsFavorite ? "⭐ " : "") + m_desc.Description;
 
         public IEnumerable<Key> FullSequence
-            => new Key(Key.ComposeKeyLabel).Yield().Concat(m_desc.Sequence);
+            => Key.COMPOSE.Yield().Concat(m_desc.Sequence);
 
         public Visibility AddToFavoritesVisibility
             => IsFavorite ? Visibility.Collapsed : Visibility.Visible;

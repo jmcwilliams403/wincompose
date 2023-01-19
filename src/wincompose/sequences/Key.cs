@@ -26,7 +26,7 @@ namespace WinCompose
     /// </summary>
     public partial class Key
     {
-        public static readonly string ComposeKeyLabel = "♦";
+        public static readonly string ComposeKeyLabel = "Com-\npose";
         /// <summary>
         /// A dictionary of symbols that we use for some key labels when
         /// ToString() won’t do a good job.

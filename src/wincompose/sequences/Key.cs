@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
@@ -32,28 +33,45 @@ namespace WinCompose
         /// ToString() won’t do a good job.
         /// </summary>
         private static readonly Dictionary<Key, string> m_key_labels
-            = new Dictionary<Key, string>
+            = GetKeyLabels();
+
+        private static Dictionary<Key, string> GetKeyLabels()
         {
-            { COMPOSE,             "Com-\npose" },
-            { new Key(VK.BACK),    "⌫" },
-            { new Key(VK.TAB),     "⭾" },
-            { new Key("\n"),       "Line\nFeed" },
-            { new Key(VK.CLEAR),   "⌧" },
-            { new Key(VK.RETURN),  "⏎" },
-            { new Key(" "),        "SP" },
-            { new Key(VK.PRIOR),   "PgUp" },
-            { new Key(VK.NEXT),    "PgDn" },
-            { new Key(VK.END),     "End" },
-            { new Key(VK.HOME),    "Home" },
-            { new Key(VK.LEFT),    "⬅" },
-            { new Key(VK.UP),      "⬆" },
-            { new Key(VK.RIGHT),   "⮕" },
-            { new Key(VK.DOWN),    "⬇" },
-            { new Key(VK.INSERT),  "Ins" },
-            { new Key(VK.DELETE),  "⌦" },
-            { new Key("\xa0"),     "NBSP" },
-            { new Key("\xad"),     "SHY" },
-        };
+            Dictionary<Key, string> ret = new Dictionary<Key, string>
+            {
+                { COMPOSE,             "Com-\npose" },
+                { new Key(VK.BACK),    "⌫" },
+                { new Key(VK.TAB),     "⭾" },
+                { new Key("\n"),       "Line\nFeed" },
+                { new Key(VK.CLEAR),   "⌧" },
+                { new Key(VK.RETURN),  "⏎" },
+                { new Key(" "),        "SP" },
+                { new Key(VK.PRIOR),   "PgUp" },
+                { new Key(VK.NEXT),    "PgDn" },
+                { new Key(VK.END),     "End" },
+                { new Key(VK.HOME),    "Home" },
+                { new Key(VK.LEFT),    "⬅" },
+                { new Key(VK.UP),      "⬆" },
+                { new Key(VK.RIGHT),   "⮕" },
+                { new Key(VK.DOWN),    "⬇" },
+                { new Key(VK.INSERT),  "Ins" },
+                { new Key(VK.DELETE),  "⌦" },
+                { new Key("\xa0"),     "NBSP" },
+                { new Key("\xad"),     "SHY" },
+            };
+            
+            // Prepend a dotted circle to characters in the "Combining Diacritical Marks"
+            // block. There are other blocks with combining characters in them, but these
+            // are the ones that actually show up in a few stock XOrg sequences, and a
+            // handful in particular are also named keysyms for the Vietnamese locale.
+            for (char c = '\u0300'; c < '\u0370'; ++c)
+            {
+                string str = char.ToString(c);
+                ret.Add(new Key(str), "◌" + str);
+            }
+
+            return ret;
+        }
 
         /// <summary>
         /// A dictionary of non-printable keysyms and the corresponding virtual

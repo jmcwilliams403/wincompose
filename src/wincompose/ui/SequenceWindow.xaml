@@ -128,7 +128,7 @@
                                            - otherwise nothing will be rendered. -->
                                         <TextBlock Text="{Binding KeyLabel}" Foreground="#310" FontWeight="Bold"
                                                    FontFamily="Tahoma, Segoe UI Symbol, Arial, Noto Sans"
-                                                   HorizontalAlignment="Center" MinWidth="10"/>
+                                                   HorizontalAlignment="Center" TextAlignment="Center" MinWidth="10"/>
                                     </Viewbox>
                                 </Border>
                             </Border>

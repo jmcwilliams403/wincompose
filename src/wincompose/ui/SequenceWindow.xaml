@@ -127,7 +127,7 @@
                                         <!-- We use MinWidth in case the label is a combining character,
                                            - otherwise nothing will be rendered. -->
                                         <TextBlock Text="{Binding KeyLabel}" Foreground="#310" FontWeight="Bold"
-                                                   FontFamily="Consolas, Segoe UI Symbol, Arial, Noto Sans"
+                                                   FontFamily="Tahoma, Segoe UI Symbol, Arial, Noto Sans"
                                                    HorizontalAlignment="Center" MinWidth="10"/>
                                     </Viewbox>
                                 </Border>

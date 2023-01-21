@@ -112,7 +112,7 @@ namespace WinCompose
                 }
             }
 
-            list.Sort((x, y) => x.RangeStart < y.RangeStart ? -1 : x.RangeStart > y.RangeStart? 1 : 0);
+            list.Sort((x, y) => string.Compare(x.Name, y.Name, Thread.CurrentThread.CurrentCulture, CompareOptions.StringSort));
             return list;
         }
     }

@@ -32,7 +32,6 @@ namespace WinCompose
             "Arial Unicode MS",
             "Microsoft Sans Serif",
             "Tahoma",
-            "Courier New",
             "Times New Roman",
             "Global User Interface",
             "Portable User Interface",
@@ -43,6 +42,6 @@ namespace WinCompose
         };
 
         private static readonly string PreferredString = string.Join(", ", PreferredFonts);
-        private static readonly string FixedString = "Consolas, " + PreferredString;
+        private static readonly string FixedString = "Consolas, Courier New, " + PreferredString;
     }
 }

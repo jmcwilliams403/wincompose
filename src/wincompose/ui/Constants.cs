@@ -26,7 +26,6 @@ namespace WinCompose
         {
             "Segoe UI",
             "Lucida Sans Unicode",
-            "Lucida Grande",
             "Noto Sans",
             "Arial",
             "Arial Unicode MS",

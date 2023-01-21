@@ -150,9 +150,15 @@ public class SequenceTree : SequenceNode
                 switch (s[1])
                 {
                     // These sequences are converted to their known value
+                    case '0': return "\0";
+                    case 'a': return "\a";
+                    case 'b': return "\b";
+                    case 'e': return "\x1b";
+                    case 'f': return "\f";
                     case 'n': return "\n";
                     case 'r': return "\r";
                     case 't': return "\t";
+                    case 'v': return "\v";
                     case '"': return "\"";
                     case '\\': return "\\";
                     default: return s;

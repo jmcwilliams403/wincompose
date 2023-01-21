@@ -17,6 +17,7 @@ namespace WinCompose
     public static class Constants
     {
         public static FontFamily PreferredFontFamily => new FontFamily(PreferredString);
+        public static FontFamily KeyLabelFontFamily => new FontFamily(KeyLabelString);
         public static FontFamily FixedFontFamily => new FontFamily(FixedString);
 
         // We need Segoe UI Symbol, but we put it at the end because it messes
@@ -30,7 +31,6 @@ namespace WinCompose
             "Arial",
             "Arial Unicode MS",
             "Microsoft Sans Serif",
-            "Tahoma",
             "Times New Roman",
             "Global User Interface",
             "Portable User Interface",
@@ -41,6 +41,7 @@ namespace WinCompose
         };
 
         private static readonly string PreferredString = string.Join(", ", PreferredFonts);
+        private static readonly string KeyLabelString = "Tahoma, " + PreferredString;
         private static readonly string FixedString = "Consolas, Courier New, " + PreferredString;
     }
 }

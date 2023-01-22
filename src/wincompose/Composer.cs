@@ -595,46 +595,57 @@ exit_forward_key:
         {
             char ch = str[i];
 
-            if (ch == '\n' || ch == '\r')
+            // On some applications (e.g. Chrome or PowerPoint), \b, \e, \n, and \r cannot
+            // be injected through its scancode, so we send the virtual key instead.
+            switch(ch)
             {
-                // On some applications (e.g. Chrome or PowerPoint), \n cannot be injected
-                // through its scancode, so we send the virtual key instead.
-                seq.AddKeyEvent(EventType.KeyUpDown, VK.RETURN);
-            }
-            else if (use_gtk_hack && char.IsSurrogate(ch))
-            {
-                // Sanity check
-                if (i + 1 >= str.Length || !char.IsHighSurrogate(ch) || !char.IsLowSurrogate(str, i + 1))
-                    continue;
+                case '\b':
+                    seq.AddKeyEvent(EventType.KeyUpDown, VK.BACK);
+                    break;
+                case '\x1b':
+                    seq.AddKeyEvent(EventType.KeyUpDown, VK.ESCAPE);
+                    break;
+                case '\n':
+                case '\r':
+                    seq.AddKeyEvent(EventType.KeyUpDown, VK.RETURN);
+                    break;
+                default:
+                    if (use_gtk_hack && char.IsSurrogate(ch))
+                    {
+                        // Sanity check
+                        if (i + 1 >= str.Length || !char.IsHighSurrogate(ch) || !char.IsLowSurrogate(str, i + 1))
+                            continue;
 
-                var codepoint = char.ConvertToUtf32(ch, str[++i]);
+                        var codepoint = char.ConvertToUtf32(ch, str[++i]);
 
-                // GTK+ hack:
-                //  - We need to disable Caps Lock
-                //  - Wikipedia says Ctrl+Shift+u, release, then type the four hex digits,
-                //    and press Enter (http://en.wikipedia.org/wiki/Unicode_input).
-                //  - The Gimp accepts either Enter or Space but stops immediately in both
-                //    cases.
-                //  - Inkscape stops after Enter, but allows to chain sequences using Space.
-                bool has_capslock = NativeMethods.GetKeyState(VK.CAPITAL) != 0;
-                if (has_capslock)
-                    seq.AddKeyEvent(EventType.KeyUpDown, VK.CAPITAL);
+                        // GTK+ hack:
+                        //  - We need to disable Caps Lock
+                        //  - Wikipedia says Ctrl+Shift+u, release, then type the four hex digits,
+                        //    and press Enter (http://en.wikipedia.org/wiki/Unicode_input).
+                        //  - The Gimp accepts either Enter or Space but stops immediately in both
+                        //    cases.
+                        //  - Inkscape stops after Enter, but allows to chain sequences using Space.
+                        bool has_capslock = NativeMethods.GetKeyState(VK.CAPITAL) != 0;
+                        if (has_capslock)
+                            seq.AddKeyEvent(EventType.KeyUpDown, VK.CAPITAL);
 
-                seq.AddKeyEvent(EventType.KeyDown, VK.LCONTROL);
-                seq.AddKeyEvent(EventType.KeyDown, VK.LSHIFT);
-                seq.AddKeyEvent(EventType.KeyUpDown, VK.U);
-                seq.AddKeyEvent(EventType.KeyUp, VK.LSHIFT);
-                seq.AddKeyEvent(EventType.KeyUp, VK.LCONTROL);
-                foreach (var key in $"{codepoint:X04}")
-                    seq.AddKeyEvent(EventType.KeyUpDown, (VK)key);
-                seq.AddKeyEvent(EventType.KeyUpDown, VK.RETURN);
+                        seq.AddKeyEvent(EventType.KeyDown, VK.LCONTROL);
+                        seq.AddKeyEvent(EventType.KeyDown, VK.LSHIFT);
+                        seq.AddKeyEvent(EventType.KeyUpDown, VK.U);
+                        seq.AddKeyEvent(EventType.KeyUp, VK.LSHIFT);
+                        seq.AddKeyEvent(EventType.KeyUp, VK.LCONTROL);
+                        foreach (var key in $"{codepoint:X04}")
+                            seq.AddKeyEvent(EventType.KeyUpDown, (VK)key);
+                        seq.AddKeyEvent(EventType.KeyUpDown, VK.RETURN);
 
-                if (has_capslock)
-                    seq.AddKeyEvent(EventType.KeyUpDown, VK.CAPITAL);
-            }
-            else
-            {
-                seq.AddUnicodeInput(ch);
+                        if (has_capslock)
+                            seq.AddKeyEvent(EventType.KeyUpDown, VK.CAPITAL);
+                    }
+                    else
+                    {
+                        seq.AddUnicodeInput(ch);
+                    }
+                    break;
             }
         }
 

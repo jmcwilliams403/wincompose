@@ -215,31 +215,20 @@ public class SequenceTree : SequenceNode
 public class SequenceNode
 {
     public void InsertSequence(KeySequence sequence, string result, int utf32, string desc)
-        => InsertSequence(sequence, new SequenceDescription()
-            {
-                Sequence = sequence,
-                Result = result,
-                Utf32 = utf32,
-                Description = desc,
-            });
-
-    private void InsertSequence(KeySequence path, SequenceDescription item)
     {
-        if (path.Count == 0)
+        if (sequence.Count == 0)
         {
-            // If this is a conflict, warn about it
-            if (m_results.Count > 0 && m_results[0].Result != item.Result)
-                Logger.Warn($"Conflicting sequence for {item.Sequence.FriendlyName}: had {m_results[0].Result}, got {item.Result}");
-
-            // Insert sequence at index 0 to give precedence to user sequences
-            m_results.Insert(0, item);
+            m_result = result;
+            m_utf32 = utf32;
+            m_description = desc;
             return;
         }
 
-        if (!m_children.TryGetValue(path[0], out var child))
-            m_children.Add(path[0], child = new SequenceNode());
+        if (!m_children.ContainsKey(sequence[0]))
+            m_children.Add(sequence[0], new SequenceNode());
 
-        child.InsertSequence(path.GetRange(1, path.Count - 1), item);
+        var subsequence = sequence.GetRange(1, sequence.Count - 1);
+        m_children[sequence[0]].InsertSequence(subsequence, result, utf32, desc);
     }
 
     public bool IsValidPrefix(KeySequence sequence, bool ignore_case)
@@ -270,8 +259,8 @@ public class SequenceNode
 
         // Check if the sequence exists in our tree
         SequenceNode subtree = GetSubtree(sequence, flags);
-        if (subtree != null && subtree.m_results.Count > 0)
-            return subtree.m_results[0].Result;
+        if (subtree != null && subtree.m_result != "")
+            return subtree.m_result;
 
         return "";
     }
@@ -311,7 +300,7 @@ public class SequenceNode
         {
             if ((flags & Search.Prefixes) != 0 && m_children.Count == 0)
                 return null;
-            if ((flags & Search.Sequences) != 0 && m_results.Count == 0)
+            if ((flags & Search.Sequences) != 0 && m_result == null)
                 return null;
             return this;
         }
@@ -350,7 +339,15 @@ public class SequenceNode
     private void BuildSequenceDescriptions(List<SequenceDescription> list,
                                            KeySequence path)
     {
-        list.AddRange(m_results);
+        if (m_result != null)
+        {
+            var item = new SequenceDescription();
+            item.Sequence = path;
+            item.Result = m_result;
+            item.Description = m_description;
+            item.Utf32 = m_utf32;
+            list.Add(item);
+        }
 
         foreach (var pair in m_children)
         {
@@ -362,8 +359,9 @@ public class SequenceNode
 
     protected IDictionary<Key, SequenceNode> m_children
         = new Dictionary<Key, SequenceNode>();
-    private IList<SequenceDescription> m_results
-        = new List<SequenceDescription>();
+    private string m_result;
+    private string m_description;
+    private int m_utf32;
 
     private static NLog.ILogger Logger = NLog.LogManager.GetCurrentClassLogger();
 };

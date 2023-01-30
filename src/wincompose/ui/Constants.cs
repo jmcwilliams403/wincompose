@@ -36,6 +36,9 @@ namespace WinCompose
             "Portable User Interface",
             "Segoe UI Symbol",
             "Symbola",
+            "Code2000",
+            "Code2001 Plane One",
+            "Code2002",
             "Unifont",
             "Unifont Upper",
         };

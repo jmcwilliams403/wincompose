@@ -38,12 +38,12 @@ namespace WinCompose
         {
             Dictionary<Key, string> ret = new Dictionary<Key, string>
             {
-                { new Key(VK.COMPOSE), "Com-\npose" },
+                { new Key(VK.COMPOSE), "⧫" },
                 { new Key(VK.BACK),    "⌫" },
                 { new Key(VK.TAB),     "⭾" },
                 { new Key("\n"),       "Line\nFeed" },
                 { new Key(VK.CLEAR),   "⌧" },
-                { new Key(VK.RETURN),  "⏎" },
+                { new Key(VK.RETURN),  "↩" },
                 { new Key(" "),        "SP" },
                 { new Key(VK.PRIOR),   "PgUp" },
                 { new Key(VK.NEXT),    "PgDn" },

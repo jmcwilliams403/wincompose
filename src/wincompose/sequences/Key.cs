@@ -38,7 +38,7 @@ namespace WinCompose
         {
             Dictionary<Key, string> ret = new Dictionary<Key, string>
             {
-                { new Key(VK.COMPOSE), "⧫" },
+                { new Key(VK.COMPOSE), "♦" },
                 { new Key(VK.BACK),    "⌫" },
                 { new Key(VK.TAB),     "⭾" },
                 { new Key("\n"),       "Line\nFeed" },

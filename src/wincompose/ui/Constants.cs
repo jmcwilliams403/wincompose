@@ -27,7 +27,7 @@ namespace WinCompose
             "Segoe UI",
             "Lucida Sans Unicode",
             "DejaVu Sans",
-            "Open Sans",
+            "Noto Sans",
             "Arial",
             "Microsoft Sans Serif",
             "Tahoma",

@@ -44,7 +44,6 @@ namespace WinCompose
                 { new Key("\n"),       "Line\nFeed" },
                 { new Key(VK.CLEAR),   "⌧" },
                 { new Key(VK.RETURN),  "↩" },
-                { new Key(" "),        "SP" },
                 { new Key(VK.PRIOR),   "PgUp" },
                 { new Key(VK.NEXT),    "PgDn" },
                 { new Key(VK.END),     "End" },

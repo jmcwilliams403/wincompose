@@ -22,6 +22,7 @@ namespace WinCompose
 {
     public class SequenceViewModel : ViewModelBase
     {
+        public static Key SpaceKey = new Key(" ");
         public SequenceViewModel(SequenceDescription desc) => m_desc = desc;
 
         public CategoryViewModel UnicodeCategoryVM { get; set; }

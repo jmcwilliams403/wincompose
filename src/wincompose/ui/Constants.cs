@@ -37,6 +37,8 @@ namespace WinCompose
             "Portable User Interface",
             "Segoe UI Symbol",
             "Symbola",
+            "Unifont",
+            "Unifont Upper",
         };
 
         private static readonly string PreferredString = string.Join(", ", PreferredFonts);

@@ -29,6 +29,7 @@ namespace WinCompose
             "DejaVu Sans",
             "Noto Sans",
             "Arial",
+            "Arial Unicode MS",
             "Microsoft Sans Serif",
             "Tahoma",
             "Courier New",
